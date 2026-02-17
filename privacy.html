@@ -25,17 +25,47 @@
       margin-bottom: 40px;
     }
 
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
     header h1 {
       font-size: 28px;
       font-weight: 700;
       color: #1c1c1e;
-      margin-bottom: 6px;
     }
 
-    header p {
+    header > p {
       font-size: 14px;
       color: #8e8e93;
     }
+
+    .lang-toggle {
+      flex-shrink: 0;
+      padding: 6px 18px;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #40E0D0, #00B4D8);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: opacity 0.2s;
+      margin-top: 5px;
+    }
+
+    .lang-toggle:hover {
+      opacity: 0.82;
+    }
+
+    /* Language switching */
+    html[lang="en"] .lang-ja { display: none; }
+    html[lang="ja"] .lang-en { display: none; }
 
     section {
       background: #ffffff;
@@ -75,13 +105,24 @@
     }
 
     .highlight {
-      background: #f2f7ff;
-      border-left: 3px solid #0077BE;
+      background: linear-gradient(135deg, rgba(64,224,208,0.08), rgba(0,180,216,0.08));
       border-radius: 0 8px 8px 0;
       padding: 14px 16px;
       margin-bottom: 12px;
       font-size: 15px;
       color: #1c1c1e;
+      position: relative;
+    }
+
+    .highlight::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 3px 0 0 3px;
+      background: linear-gradient(to bottom, #40E0D0, #00B4D8);
     }
 
     .highlight:last-child {
@@ -89,12 +130,16 @@
     }
 
     a {
-      color: #0077BE;
+      background: linear-gradient(90deg, #40E0D0, #00B4D8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
+      text-decoration-color: #40E0D0;
     }
 
     footer {
@@ -109,100 +154,249 @@
   <div class="container">
 
     <header>
-      <h1>Privacy Policy</h1>
-      <p>Permanent Traveler &nbsp;·&nbsp; Effective date: February 17, 2026</p>
+      <div class="header-top">
+        <h1>
+          <span class="lang-en">Privacy Policy</span>
+          <span class="lang-ja">プライバシーポリシー</span>
+        </h1>
+        <button class="lang-toggle" onclick="toggleLang()">
+          <span class="lang-en">日本語</span>
+          <span class="lang-ja">English</span>
+        </button>
+      </div>
+      <p>
+        <span class="lang-en">Permanent Traveler &nbsp;·&nbsp; Effective date: February 17, 2026</span>
+        <span class="lang-ja">Permanent Traveler &nbsp;·&nbsp; 発効日：2026年2月17日</span>
+      </p>
     </header>
 
     <section>
       <div class="highlight">
-        Your data never leaves your device. Permanent Traveler has no servers, no accounts, no analytics, and no third-party SDKs. Everything stays on your iPhone.
+        <span class="lang-en">Your data never leaves your device. Permanent Traveler has no servers, no accounts, no analytics, and no third-party SDKs. Everything stays on your iPhone.</span>
+        <span class="lang-ja">あなたのデータはデバイスの外に出ることはありません。Permanent Travelerにはサーバー、アカウント、アナリティクス、サードパーティSDKは一切ありません。すべてがあなたのiPhone上に保管されます。</span>
       </div>
     </section>
 
     <section>
-      <h2>What This App Does</h2>
-      <p>Permanent Traveler helps you record which country you are in each day. It tracks your location in the background, converts it to a country name, and stores that information locally on your device so you can review your travel history over time.</p>
+      <h2>
+        <span class="lang-en">What This App Does</span>
+        <span class="lang-ja">アプリの機能</span>
+      </h2>
+      <p>
+        <span class="lang-en">Permanent Traveler helps you record which country you are in each day. It tracks your location in the background, converts it to a country name, and stores that information locally on your device so you can review your travel history over time.</span>
+        <span class="lang-ja">Permanent Travelerは、あなたが毎日どの国にいるかを記録するアプリです。バックグラウンドで位置情報を追跡し、国名に変換してデバイス内にローカル保存します。これにより、過去の渡航履歴をいつでも確認できます。</span>
+      </p>
     </section>
 
     <section>
-      <h2>Location Data</h2>
-      <p>The app collects your location to determine which country you are in. Specifically:</p>
+      <h2>
+        <span class="lang-en">Location Data</span>
+        <span class="lang-ja">位置情報データ</span>
+      </h2>
+      <p>
+        <span class="lang-en">The app collects your location to determine which country you are in. Specifically:</span>
+        <span class="lang-ja">このアプリは、あなたがどの国にいるかを特定するために位置情報を収集します。具体的には：</span>
+      </p>
       <ul>
-        <li>Location is collected using iOS significant-location-change monitoring, which triggers only when you move a meaningful distance (approximately 3 km). It does not continuously sample your GPS.</li>
-        <li>Precise coordinates are converted on your device to a country name, city, and region using Apple's built-in reverse geocoding. The raw GPS coordinates are not stored.</li>
-        <li>The app requests reduced-accuracy location by default, meaning the system provides the least precise location needed to determine your country.</li>
-        <li>Background location access is requested so the app can record your country even when not open. When active, iOS displays a location indicator in your status bar.</li>
+        <li>
+          <span class="lang-en">Location is collected using iOS significant-location-change monitoring, which triggers only when you move a meaningful distance (approximately 3 km). It does not continuously sample your GPS.</span>
+          <span class="lang-ja">iOSの有意な位置変化モニタリングを使用して位置情報を収集します。これは約3km以上移動した場合のみ起動し、GPSを継続的にサンプリングするわけではありません。</span>
+        </li>
+        <li>
+          <span class="lang-en">Precise coordinates are converted on your device to a country name, city, and region using Apple's built-in reverse geocoding. The raw GPS coordinates are not stored.</span>
+          <span class="lang-ja">正確な座標はデバイス上でAppleの組み込みリバースジオコーディングを使用して国名、市区町村、地域名に変換されます。生のGPS座標は保存されません。</span>
+        </li>
+        <li>
+          <span class="lang-en">The app requests reduced-accuracy location by default, meaning the system provides the least precise location needed to determine your country.</span>
+          <span class="lang-ja">アプリはデフォルトで精度を下げた位置情報を要求します。つまり、国を特定するために必要な最小限の精度の位置情報のみが提供されます。</span>
+        </li>
+        <li>
+          <span class="lang-en">Background location access is requested so the app can record your country even when not open. When active, iOS displays a location indicator in your status bar.</span>
+          <span class="lang-ja">アプリを開いていない場合でも国を記録できるよう、バックグラウンド位置情報アクセスを要求します。有効な場合、iOSのステータスバーに位置情報インジケーターが表示されます。</span>
+        </li>
       </ul>
-      <p>All location data is stored only on your device using Apple's SwiftData framework. It is never transmitted, uploaded, or shared.</p>
+      <p>
+        <span class="lang-en">All location data is stored only on your device using Apple's SwiftData framework. It is never transmitted, uploaded, or shared.</span>
+        <span class="lang-ja">すべての位置情報データは、AppleのSwiftDataフレームワークを使用してデバイス上のみに保存されます。送信、アップロード、共有されることは一切ありません。</span>
+      </p>
     </section>
 
     <section>
-      <h2>What Is Stored on Your Device</h2>
-      <p>The app stores the following information locally:</p>
+      <h2>
+        <span class="lang-en">What Is Stored on Your Device</span>
+        <span class="lang-ja">デバイスに保存されるデータ</span>
+      </h2>
+      <p>
+        <span class="lang-en">The app stores the following information locally:</span>
+        <span class="lang-ja">アプリは以下の情報をローカルに保存します：</span>
+      </p>
       <ul>
-        <li><strong>Daily location logs</strong> — country, city, and region for each day, whether recorded automatically or entered manually by you.</li>
-        <li><strong>Planned trips</strong> — future travel dates, destination country, city, and any notes you add.</li>
-        <li><strong>Preferences</strong> — your default location, residency alert threshold, calendar start day, and dismissed alert history.</li>
+        <li>
+          <span class="lang-en"><strong>Daily location logs</strong> — country, city, and region for each day, whether recorded automatically or entered manually by you.</span>
+          <span class="lang-ja"><strong>毎日の位置情報ログ</strong> — 自動記録または手動入力による、その日の国名・市区町村・地域名。</span>
+        </li>
+        <li>
+          <span class="lang-en"><strong>Planned trips</strong> — future travel dates, destination country, city, and any notes you add.</span>
+          <span class="lang-ja"><strong>予定された旅行</strong> — 将来の渡航日、目的国、市区町村、および追加したメモ。</span>
+        </li>
+        <li>
+          <span class="lang-en"><strong>Preferences</strong> — your default location, residency alert threshold, calendar start day, and dismissed alert history.</span>
+          <span class="lang-ja"><strong>設定</strong> — デフォルト位置、居住地アラートのしきい値、カレンダーの開始曜日、非表示にしたアラートの履歴。</span>
+        </li>
       </ul>
-      <p>None of this data is linked to your identity, an account, or any external profile. There are no user accounts in this app.</p>
+      <p>
+        <span class="lang-en">None of this data is linked to your identity, an account, or any external profile. There are no user accounts in this app.</span>
+        <span class="lang-ja">これらのデータはあなたの個人情報、アカウント、または外部プロファイルには一切紐付けられていません。このアプリにはユーザーアカウントは存在しません。</span>
+      </p>
     </section>
 
     <section>
-      <h2>Data We Do Not Collect</h2>
-      <div class="highlight">We do not collect, transmit, or store any of the following:</div>
+      <h2>
+        <span class="lang-en">Data We Do Not Collect</span>
+        <span class="lang-ja">収集しないデータ</span>
+      </h2>
+      <div class="highlight">
+        <span class="lang-en">We do not collect, transmit, or store any of the following:</span>
+        <span class="lang-ja">以下のデータは一切収集・送信・保存しません：</span>
+      </div>
       <ul>
-        <li>Your name, email address, or any personal identifiers</li>
-        <li>Raw GPS coordinates or precise location history</li>
-        <li>Device identifiers or advertising IDs</li>
-        <li>Usage analytics or behavioral data</li>
-        <li>Crash reports or diagnostic logs sent to us</li>
-        <li>Payment or financial information</li>
-        <li>Contacts, photos, or any other data outside of location</li>
+        <li>
+          <span class="lang-en">Your name, email address, or any personal identifiers</span>
+          <span class="lang-ja">氏名、メールアドレス、その他の個人識別情報</span>
+        </li>
+        <li>
+          <span class="lang-en">Raw GPS coordinates or precise location history</span>
+          <span class="lang-ja">生のGPS座標または正確な位置情報履歴</span>
+        </li>
+        <li>
+          <span class="lang-en">Device identifiers or advertising IDs</span>
+          <span class="lang-ja">デバイス識別子または広告ID</span>
+        </li>
+        <li>
+          <span class="lang-en">Usage analytics or behavioral data</span>
+          <span class="lang-ja">利用状況の分析データや行動データ</span>
+        </li>
+        <li>
+          <span class="lang-en">Crash reports or diagnostic logs sent to us</span>
+          <span class="lang-ja">クラッシュレポートまたは診断ログの送信</span>
+        </li>
+        <li>
+          <span class="lang-en">Payment or financial information</span>
+          <span class="lang-ja">決済情報または金融情報</span>
+        </li>
+        <li>
+          <span class="lang-en">Contacts, photos, or any other data outside of location</span>
+          <span class="lang-ja">連絡先、写真、位置情報以外のその他のデータ</span>
+        </li>
       </ul>
     </section>
 
     <section>
-      <h2>Third Parties</h2>
-      <p>Permanent Traveler contains no third-party SDKs, analytics libraries, advertising networks, or crash reporting tools. The only external services involved are Apple's own frameworks — CoreLocation for location monitoring and CLGeocoder for on-device reverse geocoding — which are subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</p>
-      <p>We do not sell, share, rent, or disclose your data to any third party.</p>
+      <h2>
+        <span class="lang-en">Third Parties</span>
+        <span class="lang-ja">第三者について</span>
+      </h2>
+      <p>
+        <span class="lang-en">Permanent Traveler contains no third-party SDKs, analytics libraries, advertising networks, or crash reporting tools. The only external services involved are Apple's own frameworks — CoreLocation for location monitoring and CLGeocoder for on-device reverse geocoding — which are subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</span>
+        <span class="lang-ja">Permanent Travelerにはサードパーティ製のSDK、アナリティクスライブラリ、広告ネットワーク、クラッシュレポートツールは一切含まれていません。関与する外部サービスはApple独自のフレームワークのみです — 位置情報モニタリングのためのCoreLocationと、デバイス上のリバースジオコーディングのためのCLGeocoderです。これらは<a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Appleのプライバシーポリシー</a>に準拠しています。</span>
+      </p>
+      <p>
+        <span class="lang-en">We do not sell, share, rent, or disclose your data to any third party.</span>
+        <span class="lang-ja">第三者にデータを販売、共有、貸与、開示することは一切ありません。</span>
+      </p>
     </section>
 
     <section>
-      <h2>Deleting Your Data</h2>
-      <p>You can delete all data stored by the app at any time. Open the app, go to <strong>Settings → Delete All Data</strong>. This permanently removes all location history, planned trips, and preferences from your device. This action cannot be undone.</p>
-      <p>Uninstalling the app from your device also removes all associated data.</p>
+      <h2>
+        <span class="lang-en">Deleting Your Data</span>
+        <span class="lang-ja">データの削除</span>
+      </h2>
+      <p>
+        <span class="lang-en">You can delete all data stored by the app at any time. Open the app, go to <strong>Settings → Delete All Data</strong>. This permanently removes all location history, planned trips, and preferences from your device. This action cannot be undone.</span>
+        <span class="lang-ja">アプリに保存されたすべてのデータはいつでも削除できます。アプリを開き、<strong>設定 → すべてのデータを削除</strong> に進んでください。これにより、すべての位置情報履歴、予定された旅行、設定がデバイスから完全に削除されます。この操作は元に戻せません。</span>
+      </p>
+      <p>
+        <span class="lang-en">Uninstalling the app from your device also removes all associated data.</span>
+        <span class="lang-ja">デバイスからアプリをアンインストールすると、関連するすべてのデータも削除されます。</span>
+      </p>
     </section>
 
     <section>
-      <h2>Children's Privacy</h2>
-      <p>Permanent Traveler is not directed at children under the age of 13. We do not knowingly collect any information from children. Because all data is stored locally and no information is transmitted or collected by us, no special data handling for children is required. If you believe a child has used the app, you can delete all data at any time from within the app's Settings.</p>
+      <h2>
+        <span class="lang-en">Children's Privacy</span>
+        <span class="lang-ja">子供のプライバシー</span>
+      </h2>
+      <p>
+        <span class="lang-en">Permanent Traveler is not directed at children under the age of 13. We do not knowingly collect any information from children. Because all data is stored locally and no information is transmitted or collected by us, no special data handling for children is required. If you believe a child has used the app, you can delete all data at any time from within the app's Settings.</span>
+        <span class="lang-ja">Permanent Travelerは13歳未満の子供を対象としていません。子供から情報を意図的に収集することはありません。すべてのデータはローカルに保存され、当社による情報の送信や収集は一切行われないため、子供に対する特別なデータ処理は必要ありません。アプリを子供が使用したと思われる場合は、アプリの設定からいつでもすべてのデータを削除できます。</span>
+      </p>
     </section>
 
     <section>
-      <h2>Your Rights</h2>
-      <p>Because all data is stored locally on your device and we have no servers or accounts, we do not hold any of your personal data. You have full control at all times:</p>
+      <h2>
+        <span class="lang-en">Your Rights</span>
+        <span class="lang-ja">お客様の権利</span>
+      </h2>
+      <p>
+        <span class="lang-en">Because all data is stored locally on your device and we have no servers or accounts, we do not hold any of your personal data. You have full control at all times:</span>
+        <span class="lang-ja">すべてのデータはデバイス上にローカル保存されており、当社にはサーバーもアカウントも存在しないため、お客様の個人データを当社が保有することはありません。お客様は常に完全なコントロールを持っています：</span>
+      </p>
       <ul>
-        <li><strong>Access</strong> — all your data is visible within the app.</li>
-        <li><strong>Correction</strong> — you can edit or override any day's location manually.</li>
-        <li><strong>Deletion</strong> — use Settings → Delete All Data, or uninstall the app.</li>
-        <li><strong>Portability</strong> — your data never leaves your device, so it is always in your possession.</li>
+        <li>
+          <span class="lang-en"><strong>Access</strong> — all your data is visible within the app.</span>
+          <span class="lang-ja"><strong>アクセス</strong> — すべてのデータはアプリ内で確認できます。</span>
+        </li>
+        <li>
+          <span class="lang-en"><strong>Correction</strong> — you can edit or override any day's location manually.</span>
+          <span class="lang-ja"><strong>修正</strong> — 任意の日の位置情報を手動で編集・上書きできます。</span>
+        </li>
+        <li>
+          <span class="lang-en"><strong>Deletion</strong> — use Settings → Delete All Data, or uninstall the app.</span>
+          <span class="lang-ja"><strong>削除</strong> — 設定 → すべてのデータを削除 を使用するか、アプリをアンインストールしてください。</span>
+        </li>
+        <li>
+          <span class="lang-en"><strong>Portability</strong> — your data never leaves your device, so it is always in your possession.</span>
+          <span class="lang-ja"><strong>可搬性</strong> — データはデバイスの外に出ることがないため、常にお客様の手元にあります。</span>
+        </li>
       </ul>
     </section>
 
     <section>
-      <h2>Changes to This Policy</h2>
-      <p>If this policy changes, the updated version will be published at this URL with a revised effective date. Continued use of the app after any change constitutes acceptance of the updated policy. We will only make material changes if the app's data practices change — and given the privacy-first design of this app, that is not anticipated.</p>
+      <h2>
+        <span class="lang-en">Changes to This Policy</span>
+        <span class="lang-ja">ポリシーの変更</span>
+      </h2>
+      <p>
+        <span class="lang-en">If this policy changes, the updated version will be published at this URL with a revised effective date. Continued use of the app after any change constitutes acceptance of the updated policy. We will only make material changes if the app's data practices change — and given the privacy-first design of this app, that is not anticipated.</span>
+        <span class="lang-ja">このポリシーが変更された場合、更新版は改訂された発効日とともにこのURLに掲載されます。変更後もアプリを継続して使用することにより、更新されたポリシーへの同意とみなされます。アプリのデータ管理方針が変わった場合にのみ重要な変更を加えます。プライバシー優先のアプリ設計上、そのような変更は想定されていません。</span>
+      </p>
     </section>
 
     <section>
-      <h2>Contact</h2>
-      <p>If you have any questions about this privacy policy or how the app handles your data, you can reach us on X (Twitter): <a href="https://x.com/ninjashinobi21" target="_blank" rel="noopener">@ninjashinobi21</a></p>
+      <h2>
+        <span class="lang-en">Contact</span>
+        <span class="lang-ja">お問い合わせ</span>
+      </h2>
+      <p>
+        <span class="lang-en">If you have any questions about this privacy policy or how the app handles your data, you can reach us on X (Twitter): <a href="https://x.com/ninjashinobi21" target="_blank" rel="noopener">@ninjashinobi21</a></span>
+        <span class="lang-ja">このプライバシーポリシーまたはアプリのデータ取り扱いに関するご質問は、X（Twitter）でお問い合わせください：<a href="https://x.com/ninjashinobi21" target="_blank" rel="noopener">@ninjashinobi21</a></span>
+      </p>
     </section>
 
     <footer>
-      <p>Permanent Traveler &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Last updated February 17, 2026</p>
+      <p>
+        <span class="lang-en">Permanent Traveler &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Last updated February 17, 2026</span>
+        <span class="lang-ja">Permanent Traveler &nbsp;·&nbsp; プライバシーポリシー &nbsp;·&nbsp; 最終更新：2026年2月17日</span>
+      </p>
     </footer>
 
   </div>
+
+  <script>
+    function toggleLang() {
+      const html = document.documentElement;
+      html.lang = html.lang === 'en' ? 'ja' : 'en';
+    }
+  </script>
 </body>
 </html>
